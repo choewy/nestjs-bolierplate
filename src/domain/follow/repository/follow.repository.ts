@@ -1,0 +1,26 @@
+import { DataSource, Repository } from 'typeorm';
+
+import { Injectable } from '@nestjs/common';
+
+import { Follow } from '../entity/follow.entity';
+
+@Injectable()
+export class FollowRepository extends Repository<Follow> {
+  constructor(dataSource: DataSource) {
+    super(Follow, dataSource.createEntityManager());
+  }
+
+  async findByFromMemberId(fromMemberId: number) {
+    return this.find({
+      relations: { toMember: true },
+      where: { fromMember: { id: fromMemberId } },
+    });
+  }
+
+  async findByToMemberId(toMemberId: number) {
+    return this.find({
+      relations: { fromMember: true },
+      where: { toMember: { id: toMemberId } },
+    });
+  }
+}

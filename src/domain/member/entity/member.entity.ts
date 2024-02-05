@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon';
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+import { MemberNicknameHistory } from './member-nickname-history.entity';
 
 @Entity()
 export class Member {
@@ -17,6 +19,10 @@ export class Member {
 
   @CreateDateColumn()
   readonly createdAt: Date;
+
+  @OneToMany(() => MemberNicknameHistory, (e) => e.member, { cascade: ['insert', 'remove'] })
+  @JoinTable()
+  nicknameHistories: MemberNicknameHistory[];
 
   birthdayToString() {
     return DateTime.fromJSDate(this.birthday).toSQLDate();

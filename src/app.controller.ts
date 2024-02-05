@@ -12,7 +12,7 @@ export class AppController {
   @ApiOperation({ summary: 'DB 연결 상태 체크' })
   async getHello() {
     return this.dataSource
-      .query('SELECT 1')
+      .query('SELECT 1;')
       .then(() => true)
       .catch(() => false);
   }

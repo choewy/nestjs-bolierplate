@@ -10,6 +10,10 @@ export class MemberRepository extends Repository<Member> {
     super(Member, dataSource.createEntityManager());
   }
 
+  async existsById(id: number) {
+    return this.existsBy({ id });
+  }
+
   async existsByEmail(email: string) {
     return this.existsBy({ email });
   }

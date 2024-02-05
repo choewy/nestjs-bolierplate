@@ -3,7 +3,7 @@ import { ValidationError } from 'class-validator';
 
 import { ClassValidator } from 'test/utils/class-validator';
 
-import { RegisterMemberCommand } from '@domain/member/dto/register-member.command';
+import { RegisterMemberCommand } from '@domain/member/dto/regist-member.command';
 
 describe('RegisterMemberCommand', () => {
   it('이메일을 반드시 입력해야 한다.', () => {

@@ -9,7 +9,8 @@ export class DataSourceConfig {
       username: process.env.DATASOURCE_USERNAME,
       password: process.env.DATASOURCE_PASSWORD,
       database: process.env.DATASOURCE_DATABASE,
-      entities: ['./dist/**/*.entity.{js,ts}'],
+      entities: ['./dist/**/*/entity/*.entity.{js,ts}'],
+      synchronize: true,
     };
   }
 }

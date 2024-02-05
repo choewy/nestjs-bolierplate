@@ -10,6 +10,13 @@ export class FollowRepository extends Repository<Follow> {
     super(Follow, dataSource.createEntityManager());
   }
 
+  async existsByMembers(fromMemberId: number, toMemberId: number) {
+    return this.existsBy({
+      fromMember: { id: fromMemberId },
+      toMember: { id: toMemberId },
+    });
+  }
+
   async findByFromMemberId(fromMemberId: number) {
     return this.find({
       relations: { toMember: true },

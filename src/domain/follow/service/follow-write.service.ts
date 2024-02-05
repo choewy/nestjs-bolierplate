@@ -1,7 +1,8 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 
-import { FollowRepository } from '../repository/follow.repository';
 import { MemberDto } from '@domain/member/dto/member.dto';
+
+import { FollowRepository } from '../repository/follow.repository';
 
 @Injectable()
 export class FollowWriteService {
@@ -15,11 +16,13 @@ export class FollowWriteService {
       });
     }
 
-    await this.followRepository.insert(
-      this.followRepository.create({
-        fromMember: { id: fromMember.id },
-        toMember: { id: toMember.id },
-      }),
-    );
+    if ((await this.followRepository.existsByMembers(fromMember.id, toMember.id)) === false) {
+      await this.followRepository.insert(
+        this.followRepository.create({
+          fromMember: { id: fromMember.id },
+          toMember: { id: toMember.id },
+        }),
+      );
+    }
   }
 }

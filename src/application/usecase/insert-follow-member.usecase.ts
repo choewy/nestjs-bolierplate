@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Scope } from '@nestjs/common';
 
 import { MemberReadService } from '@domain/member/service/member-read.service';
 import { FollowWriteService } from '@domain/follow/service/follow-write.service';
 
-@Injectable()
+@Injectable({ scope: Scope.REQUEST })
 export class InsertFollowMemberUsecase {
   constructor(private readonly memberReadService: MemberReadService, private readonly followWriteService: FollowWriteService) {}
 

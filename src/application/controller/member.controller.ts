@@ -4,7 +4,7 @@ import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestj
 import { MemberReadService } from '@domain/member/service/member-read.service';
 import { MemberWriteService } from '@domain/member/service/member-write.service';
 import { RegistMemberCommand } from '@domain/member/dto/regist-member.command';
-import { UpdateMemberCommand } from '@domain/member/dto/update-member.command';
+import { UpdateMemberNicknameCommand } from '@domain/member/dto/update-member.command';
 import { MemberDto } from '@domain/member/dto/member.dto';
 
 @ApiTags('회원정보')
@@ -35,7 +35,7 @@ export class MemberController {
   @Patch(':id(\\d+)/nickname')
   @ApiOperation({ summary: '회원 닉네임 수정' })
   @ApiOkResponse({ type: null })
-  async updateMemberNickname(@Param('id') id: number, @Body() command: UpdateMemberCommand) {
+  async updateMemberNickname(@Param('id') id: number, @Body() command: UpdateMemberNicknameCommand) {
     return this.memberWriteService.updateMemberNickname(id, command);
   }
 }

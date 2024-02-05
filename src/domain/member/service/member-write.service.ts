@@ -4,7 +4,7 @@ import { MemberRepository } from '../repository/member.repository';
 import { MemberNicknameHistoryRepository } from '../repository/member-nickname-history.repository';
 
 import { RegistMemberCommand } from '../dto/regist-member.command';
-import { UpdateMemberCommand } from '../dto/update-member.command';
+import { UpdateMemberNicknameCommand } from '../dto/update-member.command';
 import { MemberDto } from '../dto/member.dto';
 
 @Injectable()
@@ -25,7 +25,7 @@ export class MemberWriteService {
     return new MemberDto(member);
   }
 
-  async updateMemberNickname(id: number, command: UpdateMemberCommand) {
+  async updateMemberNickname(id: number, command: UpdateMemberNicknameCommand) {
     const member = await this.memberRepository.findById(id);
 
     if (member == null) {

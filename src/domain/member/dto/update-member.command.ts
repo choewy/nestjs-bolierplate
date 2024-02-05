@@ -6,7 +6,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Member } from '../entity/member.entity';
 import { MemberNicknameHistory } from '../entity/member-nickname-history.entity';
 
-export class UpdateMemberCommand {
+export class UpdateMemberNicknameCommand {
   @ApiProperty({ type: String })
   @IsNotEmpty()
   @MaxLength(10)

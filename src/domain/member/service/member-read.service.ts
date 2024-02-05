@@ -17,7 +17,7 @@ export class MemberReadService {
     const member = await this.memberRepository.findById(id);
 
     if (member == null) {
-      throw new NotFoundException('회원 정보를 찾을 수 없습니다.');
+      throw new NotFoundException({ id });
     }
 
     return new MemberDto(member);
@@ -25,7 +25,7 @@ export class MemberReadService {
 
   async getMemberNicknameHistories(id: number): Promise<MemberNicknameHistoryDto[]> {
     if ((await this.memberRepository.existsById(id)) === false) {
-      throw new NotFoundException('회원 정보를 찾을 수 없습니다.');
+      throw new NotFoundException({ id });
     }
 
     const memberNicknameHistories = await this.memberNicknameHistoryRepository.findBy({ id });

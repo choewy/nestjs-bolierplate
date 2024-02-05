@@ -1,16 +1,16 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 
-import { MemberWriteService } from '../service/member-write.service';
-import { MemberReadService } from '../service/member-read.service';
-import { RegistMemberCommand } from '../dto/regist-member.command';
-import { UpdateMemberCommand } from '../dto/update-member.command';
-import { MemberDto } from '../dto/member.dto';
+import { MemberReadService } from '@domain/member/service/member-read.service';
+import { MemberWriteService } from '@domain/member/service/member-write.service';
+import { RegistMemberCommand } from '@domain/member/dto/regist-member.command';
+import { UpdateMemberCommand } from '@domain/member/dto/update-member.command';
+import { MemberDto } from '@domain/member/dto/member.dto';
 
 @ApiTags('회원정보')
 @Controller('members')
 export class MemberController {
-  constructor(private readonly memberWriteService: MemberWriteService, private readonly memberReadService: MemberReadService) {}
+  constructor(private readonly memberReadService: MemberReadService, private readonly memberWriteService: MemberWriteService) {}
 
   @Post()
   @ApiOperation({ summary: '회원 등록' })
@@ -24,6 +24,12 @@ export class MemberController {
   @ApiOkResponse({ type: MemberDto })
   async getMember(@Param('id') id: number) {
     return this.memberReadService.getMember(id);
+  }
+
+  @Get(':id(\\d+)/nickname-histories')
+  @ApiOperation({ summary: '회원 닉네임 변경 이력 조회' })
+  async getMemberNicknameHistories(@Param('id') id: number) {
+    return this.memberReadService.getMemberNicknameHistories(id);
   }
 
   @Patch(':id(\\d+)/nickname')

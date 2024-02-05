@@ -3,18 +3,18 @@ import { ValidationError } from 'class-validator';
 
 import { ClassValidator } from 'test/utils/class-validator';
 
-import { RegisterMemberCommand } from '@domain/member/dto/regist-member.command';
+import { RegistMemberCommand } from '@domain/member/dto/regist-member.command';
 
-describe('RegisterMemberCommand', () => {
+describe(RegistMemberCommand.name, () => {
   it('이메일을 반드시 입력해야 한다.', () => {
-    const result = ClassValidator.validate(RegisterMemberCommand);
+    const result = ClassValidator.validate(RegistMemberCommand);
 
     expect(result).toBeInstanceOf(ValidationError);
     expect(result.property).toEqual('email');
   });
 
   it('이메일은 이메일 형식에 맞아야 한다.', () => {
-    const result = ClassValidator.validate(RegisterMemberCommand, {
+    const result = ClassValidator.validate(RegistMemberCommand, {
       email: 'hello',
     });
 
@@ -23,7 +23,7 @@ describe('RegisterMemberCommand', () => {
   });
 
   it('닉네임을 반드시 입력해야 한다.', () => {
-    const result = ClassValidator.validate(RegisterMemberCommand, {
+    const result = ClassValidator.validate(RegistMemberCommand, {
       email: 'user@example.com',
     });
 
@@ -32,7 +32,7 @@ describe('RegisterMemberCommand', () => {
   });
 
   it('닉네임은 10자 이내로 입력해야 한다.', () => {
-    const result = ClassValidator.validate(RegisterMemberCommand, {
+    const result = ClassValidator.validate(RegistMemberCommand, {
       email: 'user@example.com',
       nickname: v4(),
     });
@@ -42,7 +42,7 @@ describe('RegisterMemberCommand', () => {
   });
 
   it('생년월일을 반드시 입력해야 한다.', () => {
-    const result = ClassValidator.validate(RegisterMemberCommand, {
+    const result = ClassValidator.validate(RegistMemberCommand, {
       email: 'user@example.com',
       nickname: v4().substring(0, 10),
     });
@@ -52,7 +52,7 @@ describe('RegisterMemberCommand', () => {
   });
 
   it('생년월일은 Date 객체로 변환될 수 있어야 한다.', () => {
-    const result = ClassValidator.validate(RegisterMemberCommand, {
+    const result = ClassValidator.validate(RegistMemberCommand, {
       email: 'user@example.com',
       nickname: v4().substring(0, 10),
       birthday: new Date('20230120'),
@@ -63,7 +63,7 @@ describe('RegisterMemberCommand', () => {
   });
 
   it('올바른 데이터를 입력했을 때 유효성 검사에 통과하여야 한다.', () => {
-    const result = ClassValidator.validate(RegisterMemberCommand, {
+    const result = ClassValidator.validate(RegistMemberCommand, {
       email: 'user@example.com',
       nickname: v4().substring(0, 10),
       birthday: new Date(),

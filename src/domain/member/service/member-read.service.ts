@@ -28,7 +28,7 @@ export class MemberReadService {
       throw new NotFoundException({ id });
     }
 
-    const memberNicknameHistories = await this.memberNicknameHistoryRepository.findBy({ id });
+    const memberNicknameHistories = await this.memberNicknameHistoryRepository.findByMemberId(id);
     return memberNicknameHistories.map((memberNicknameHistory) => new MemberNicknameHistoryDto(memberNicknameHistory));
   }
 }

@@ -9,4 +9,8 @@ export class MemberNicknameHistoryRepository extends Repository<MemberNicknameHi
   constructor(dataSource: DataSource) {
     super(MemberNicknameHistory, dataSource.createEntityManager());
   }
+
+  async findByMemberId(memberId: number) {
+    return this.findBy({ member: { id: memberId } });
+  }
 }

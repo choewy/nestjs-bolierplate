@@ -2,7 +2,7 @@
   "moduleFileExtensions": ["js", "json", "ts"],
   "rootDir": "../",
   "testEnvironment": "node",
-  "testRegex": ".*\\.spec\\.ts$",
+  "testRegex": "test/.*\\.spec\\.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
@@ -12,6 +12,12 @@
     "^@config(|/.*)$": "<rootDir>/src/config/$1",
     "^@domain(|/.*)$": "<rootDir>/src/domain/$1"
   },
-  "collectCoverageFrom": ["**/*.(t|j)s"],
-  "coverageDirectory": "./coverage/spec"
+  "coverageDirectory": "<rootDir>/coverage/spec",
+  "collectCoverageFrom": ["<rootDir>/src/**/*.(t|j)s"],
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/src/.*\\.module\\.ts$",
+    "<rootDir>/src/.*\\.entity\\.ts$",
+    "<rootDir>/src/.*\\/controller",
+    "<rootDir>/src/.*\\/usecase"
+  ]
 }

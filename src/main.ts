@@ -18,6 +18,7 @@ const bootstrap = async () => {
     new ValidationPipe({
       transform: true,
       transformOptions: { enableCircularCheck: true, enableImplicitConversion: true },
+      stopAtFirstError: true,
       exceptionFactory: (errors) => {
         throw new BadRequestException(Object.values(errors.shift().constraints).pop());
       },

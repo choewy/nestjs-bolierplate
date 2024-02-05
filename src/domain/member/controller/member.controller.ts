@@ -12,7 +12,7 @@ export class MemberController {
   constructor(private readonly memberWriteService: MemberWriteService, private readonly memberReadService: MemberReadService) {}
 
   @Post()
-  @ApiOperation({ summary: '회원등록' })
+  @ApiOperation({ summary: '회원 등록' })
   @ApiCreatedResponse({ type: MemberDto })
   async registerMember(@Body() command: RegisterMemberCommand): Promise<MemberDto> {
     return this.memberWriteService.registerMember(command);

@@ -14,15 +14,15 @@ export class PostRepository extends Repository<Post> {
   async countsByDaily(memberId: number, startDate: Date, endDate: Date) {
     return this.createQueryBuilder()
       .select('COUNT(id)', 'count')
-      .addSelect('createDate', 'date')
+      .addSelect('DATE_FORMAT(createdAt, "%Y-%m-%d")', 'date')
       .addSelect('memberId')
       .where('memberId = :memberId', { memberId })
-      .andWhere('createDate >= :startDate', { startDate: DateTime.fromJSDate(startDate).toSQLDate() })
-      .andWhere('createDate <= :endDate', { endDate: DateTime.fromJSDate(endDate).toSQLDate() })
-      .groupBy('createDate')
+      .andWhere('createdAt >= :startDate', { startDate: DateTime.fromJSDate(startDate).toSQLDate() })
+      .andWhere('createdAt <= :endDate', { endDate: DateTime.fromJSDate(endDate).toSQLDate() })
+      .groupBy('date')
       .getRawMany<{
         memberId: number;
-        date: Date;
+        date: string;
         count: number;
       }>();
   }

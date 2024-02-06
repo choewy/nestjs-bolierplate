@@ -1,5 +1,4 @@
 import { ApiResponseProperty } from '@nestjs/swagger';
-import { DateTime } from 'luxon';
 
 export class DailyPostCountDto {
   @ApiResponseProperty({ type: Number })
@@ -11,9 +10,9 @@ export class DailyPostCountDto {
   @ApiResponseProperty({ type: Number })
   readonly count: number;
 
-  constructor(memberId: number, date: Date, count: number) {
+  constructor(memberId: number, date: string, count: number) {
     this.memberId = memberId;
-    this.date = DateTime.fromJSDate(date).toSQLDate();
+    this.date = date;
     this.count = count;
   }
 }

@@ -22,7 +22,6 @@ export class CreatePostCommand {
     return plainToInstance(Post, {
       member: { id: this.memberId },
       contents: this.contents,
-      createDate: new Date(),
     } as DeepPartial<Post>);
   }
 }

@@ -10,9 +10,6 @@ export class Post {
   @Column({ type: 'varchar', length: 1024 })
   contents: string;
 
-  @Column({ type: 'date' })
-  readonly createDate: Date;
-
   @CreateDateColumn()
   readonly createdAt: Date;
 

@@ -7,15 +7,15 @@ import { MemberModule } from '@domain/member/member.module';
 import { FollowModule } from '@domain/follow/follow.module';
 import { PostModule } from '@domain/post/post.module';
 
-import { HelloController } from './application/controller/hello.controller';
-import { MemberController } from './application/controller/member.controller';
-import { FollowController } from './application/controller/follow.controller';
-import { PostController } from './application/controller/post.controller';
+import { HelloController } from '@application-controllers/hello.controller';
+import { MemberController } from '@application-controllers/member.controller';
+import { FollowController } from '@application-controllers/follow.controller';
+import { PostController } from '@application-controllers/post.controller';
 
-import { GetFollowerMembersUsecase } from './application/usecase/get-follower-members.usecase';
-import { GetFollowingMembersUsecase } from './application/usecase/get-following-members.usecase';
-import { InsertFollowMemberUsecase } from './application/usecase/insert-follow-member.usecase';
-import { InsertPostUsecase } from './application/usecase/insert-post.usecase';
+import { GetFollowerMembersUsecase } from '@application-usecases/get-follower-members.usecase';
+import { GetFollowingMembersUsecase } from '@application-usecases/get-following-members.usecase';
+import { InsertFollowMemberUsecase } from '@application-usecases/insert-follow-member.usecase';
+import { InsertPostUsecase } from '@application-usecases/insert-post.usecase';
 
 const AppUseCaseses = [InsertFollowMemberUsecase, GetFollowerMembersUsecase, GetFollowingMembersUsecase, InsertPostUsecase];
 const AppControllers = [HelloController, MemberController, FollowController, PostController];

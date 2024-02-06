@@ -5,15 +5,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { MemberModule } from '@domain/member/member.module';
 import { FollowModule } from '@domain/follow/follow.module';
+import { PostModule } from '@domain/post/post.module';
 
 import { HelloController } from './application/controller/hello.controller';
 import { MemberController } from './application/controller/member.controller';
-import { InsertFollowMemberUsecase } from './application/usecase/insert-follow-member.usecase';
 import { FollowController } from './application/controller/follow.controller';
+import { PostController } from './application/controller/post.controller';
+
 import { GetFollowerMembersUsecase } from './application/usecase/get-follower-members.usecase';
 import { GetFollowingMembersUsecase } from './application/usecase/get-following-members.usecase';
+import { InsertFollowMemberUsecase } from './application/usecase/insert-follow-member.usecase';
+import { InsertPostUsecase } from './application/usecase/insert-post.usecase';
 
-const AppUseCases = [InsertFollowMemberUsecase, GetFollowerMembersUsecase, GetFollowingMembersUsecase];
+const AppUseCaseses = [InsertFollowMemberUsecase, GetFollowerMembersUsecase, GetFollowingMembersUsecase, InsertPostUsecase];
+const AppControllers = [HelloController, MemberController, FollowController, PostController];
 
 @Module({
   imports: [
@@ -29,8 +34,9 @@ const AppUseCases = [InsertFollowMemberUsecase, GetFollowerMembersUsecase, GetFo
     }),
     MemberModule,
     FollowModule,
+    PostModule,
   ],
-  controllers: [HelloController, MemberController, FollowController],
-  providers: AppUseCases,
+  controllers: AppControllers,
+  providers: AppUseCaseses,
 })
 export class AppModule {}

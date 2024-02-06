@@ -2,6 +2,7 @@ import { DateTime } from 'luxon';
 import { Column, CreateDateColumn, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { MemberNicknameHistory } from './member-nickname-history.entity';
+import { Post } from '@domain/post/entity/post.entity';
 
 @Entity()
 export class Member {
@@ -23,6 +24,10 @@ export class Member {
   @OneToMany(() => MemberNicknameHistory, (e) => e.member, { cascade: ['insert', 'remove'] })
   @JoinTable()
   nicknameHistories: MemberNicknameHistory[];
+
+  @OneToMany(() => Post, (e) => e.member, { cascade: ['insert', 'remove'] })
+  @JoinTable()
+  posts: Post[];
 
   birthdayToString() {
     return DateTime.fromJSDate(this.birthday).toSQLDate();

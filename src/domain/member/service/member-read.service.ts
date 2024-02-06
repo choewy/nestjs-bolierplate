@@ -13,6 +13,12 @@ export class MemberReadService {
     private readonly memberNicknameHistoryRepository: MemberNicknameHistoryRepository,
   ) {}
 
+  async hasMember(id: number): Promise<void> | never {
+    if ((await this.memberRepository.existsById(id)) === false) {
+      throw new NotFoundException({ id });
+    }
+  }
+
   async getMember(id: number) {
     const member = await this.memberRepository.findById(id);
 
@@ -24,9 +30,7 @@ export class MemberReadService {
   }
 
   async getMemberNicknameHistories(id: number): Promise<MemberNicknameHistoryDto[]> {
-    if ((await this.memberRepository.existsById(id)) === false) {
-      throw new NotFoundException({ id });
-    }
+    await this.hasMember(id);
 
     const memberNicknameHistories = await this.memberNicknameHistoryRepository.findByMemberId(id);
     return memberNicknameHistories.map((memberNicknameHistory) => new MemberNicknameHistoryDto(memberNicknameHistory));

@@ -20,7 +20,7 @@ const bootstrap = async () => {
       transformOptions: { enableCircularCheck: true, enableImplicitConversion: true },
       stopAtFirstError: true,
       exceptionFactory: (errors) => {
-        throw new BadRequestException(Object.values(errors.shift().constraints).pop());
+        throw new BadRequestException(Object.values(errors.shift().constraints).pop(), 'Validation Error');
       },
     }),
   );

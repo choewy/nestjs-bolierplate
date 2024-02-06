@@ -14,10 +14,10 @@ export class FollowController {
     private readonly getFollowingMembersUsecase: GetFollowingMembersUsecase,
   ) {}
 
-  @Post(':fromId(\\d+)/:toId(\\d+)')
+  @Post(':fromMemberId(\\d+)/:toMemberId(\\d+)')
   @ApiOperation({ summary: '팔로우' })
-  async follow(@Param('fromId') fromId: number, @Param('toId') toId: number) {
-    await this.insertFollowMemberUsecase.execute(fromId, toId);
+  async follow(@Param('fromMemberId') fromMemberId: number, @Param('toMemberId') toMemberId: number) {
+    await this.insertFollowMemberUsecase.execute(fromMemberId, toMemberId);
   }
 
   @Get(':memberId(\\d+)/followers')

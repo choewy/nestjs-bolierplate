@@ -8,9 +8,9 @@ export class InsertFollowMemberUsecase {
   constructor(private readonly memberReadService: MemberReadService, private readonly followWriteService: FollowWriteService) {}
 
   async execute(fromMemberId: number, toMemberId: number) {
-    const fromMember = await this.memberReadService.getMember(fromMemberId);
-    const toMember = await this.memberReadService.getMember(toMemberId);
-
-    await this.followWriteService.create(fromMember, toMember);
+    await this.followWriteService.create(
+      await this.memberReadService.getMember(fromMemberId),
+      await this.memberReadService.getMember(toMemberId),
+    );
   }
 }

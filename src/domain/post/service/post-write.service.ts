@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { PostRepository } from '../repository/post.repository';
-import { CreatePostCommand } from '../dto/insert-post.command';
+import { CreatePostCommand } from '../dto/create-post.command';
 
 @Injectable()
 export class PostWriteService {

@@ -8,8 +8,6 @@ export class GetFollowerMembersUsecase {
   constructor(private readonly memberReadService: MemberReadService, private readonly followReadService: FollowReadService) {}
 
   async execute(memberId: number) {
-    const member = await this.memberReadService.getMember(memberId);
-
-    return this.followReadService.getFollowers(member);
+    return this.followReadService.getFollowers(await this.memberReadService.getMember(memberId));
   }
 }

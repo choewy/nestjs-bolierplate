@@ -1,3 +1,4 @@
+import { DeepPartial } from 'typeorm';
 import { IsInt, IsNotEmpty, Min, MinLength } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
 
@@ -19,8 +20,9 @@ export class CreatePostCommand {
 
   toEntity() {
     return plainToInstance(Post, {
-      contents: this.contents,
       member: { id: this.memberId },
-    });
+      contents: this.contents,
+      createDate: new Date(),
+    } as DeepPartial<Post>);
   }
 }

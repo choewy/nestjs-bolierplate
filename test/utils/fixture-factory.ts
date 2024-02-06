@@ -38,7 +38,7 @@ export class FixtureFactory {
   }
 
   static getRandomIntByRange(min: number, max: number) {
-    return Math.ceil(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * (max + 1 - min)) + min;
   }
 
   static getRandomDateByRange(start: Date, end: Date): Date {

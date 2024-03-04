@@ -1,6 +1,8 @@
 import { DynamicModule, Module, Type } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
+import { AbstractConfigService } from './abstracts';
+
 @Module({})
 export class ConfigExModule {
   static forRoot(): DynamicModule {
@@ -11,7 +13,7 @@ export class ConfigExModule {
     };
   }
 
-  static forFeature(services: Type<any>[]): DynamicModule {
+  static forFeature(services: Type<AbstractConfigService>[]): DynamicModule {
     return {
       module: ConfigExModule,
       providers: services,

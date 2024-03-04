@@ -6,7 +6,6 @@ export abstract class AbstractConfigService implements OnModuleInit {
 
   onModuleInit() {
     this.printValues();
-    this.printMethods();
   }
 
   changeValue(key: string, value: unknown) {

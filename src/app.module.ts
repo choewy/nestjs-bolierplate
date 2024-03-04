@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ConfigExModule, TypeOrmConfigService } from '@libs/config';
+import { HealthExModule } from '@libs/health';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -16,6 +17,7 @@ import { AppService } from './app.service';
         return typeOrmConfigService.changeValue('TYPEORM_SHYNCHRONIZE', true).getTypeOrmOptions();
       },
     }),
+    HealthExModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,6 +1,5 @@
-import { LogLevel } from 'typeorm';
-
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { LogLevel } from 'typeorm';
 
 import { AbstractConfigService } from '../abstracts';
 

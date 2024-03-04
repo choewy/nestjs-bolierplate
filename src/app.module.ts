@@ -1,15 +1,16 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { ConfigExModule, TypeOrmConfigService } from '@libs/config';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigsModule, TypeOrmConfigService } from './configs';
 
 @Module({
   imports: [
-    ConfigsModule.forRoot(),
+    ConfigExModule.forRoot(),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigsModule.forFeature([TypeOrmConfigService])],
+      imports: [ConfigExModule.forFeature([TypeOrmConfigService])],
       inject: [TypeOrmConfigService],
       useFactory(typeOrmConfigService: TypeOrmConfigService) {
         return typeOrmConfigService.changeValue('TYPEORM_SHYNCHRONIZE', true).getTypeOrmOptions();
